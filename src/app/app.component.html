@@ -1,0 +1,8 @@
+app ng-component
+
+<input type="button" (click)="hideChild()" value="hide">
+<input type="button" (click)="changeval()" value="change1">
+<input type="button" (click)="changeval2()" value="change2">
+<div *ngIf="isVisible">
+    <app-child [val1]="val1" [val2]="val2"></app-child>
+</div>
