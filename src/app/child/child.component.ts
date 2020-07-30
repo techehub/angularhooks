@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, OnChanges, Input, SimpleChanges, SimpleChange, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input, SimpleChanges, SimpleChange, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, ElementRef, ViewChild, ContentChild } from '@angular/core';
+
 
 @Component({
   selector: 'app-child',
@@ -9,6 +10,10 @@ export class ChildComponent implements OnInit, OnDestroy , OnChanges, DoCheck,  
 AfterContentChecked,
 AfterViewInit,
 AfterViewChecked {
+
+  message:string ="how are you?"
+  @ViewChild("txtref") txtref: ElementRef
+
 
   @Input("val1")
   public val1 : string
@@ -21,6 +26,9 @@ AfterViewChecked {
     console.log ("inside constructor")
 
   }
+
+
+
 
   ngOnInit(): void {
 
@@ -53,16 +61,22 @@ AfterViewChecked {
   }
 
 
+  ngAfterContentChecked() {
+    console.log('------ngAfterContentChecked-----');
+  }
+
   ngAfterContentInit() {
-    console.log("ngAfterContentInit");
-}
-ngAfterContentChecked() {
-    console.log("ngAfterContentChecked");
-}
+    console.log('------ngAfterContentInit-----');
+  }
+
+
 ngAfterViewInit() {
+   //this.txtref.nativeElement.focus()
     console.log("ngAfterViewInit");
 }
+
 ngAfterViewChecked() {
+    this.txtref.nativeElement.focus()
     console.log("ngAfterViewChecked");
 }
 
